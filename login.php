@@ -4,8 +4,8 @@ include 'core/init.php';
 logged_in_redirect();
 
 if (empty($_POST) === FALSE) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = htmlspecialchars(mysqli_real_escape_string($connection_name, $_POST['username']));
+    $password = htmlspecialchars(mysqli_real_escape_string($connection_name, $_POST['password']));
     
     if (empty($username) === TRUE || empty($password) === TRUE) {
         $errors[] = 'you need to enter username and password';        
